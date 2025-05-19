@@ -1,11 +1,11 @@
 {
-  "name": "interviewapp",
+  "name": "stopwatch",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "keywords": [],
   "author": "Caio Oliveira <caio.vsoliveira23@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

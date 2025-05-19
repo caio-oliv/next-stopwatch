@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-
 // Tracks elapsed time in seconds.
 // Provides functions to start, stop, and reset the stopwatch.
 // Returns the current time in seconds and a formatted minutes:seconds string.
@@ -41,9 +40,9 @@ export function useStopwatch(): UseStopwatchReturn {
 
 	function currentTimeFormatted() {
 		const currTime = currentTime()
-		const minutes = currTime / 60;
-		const seconds = currTime % 60;
-		return minutes.toString() + ':' + seconds.toString();
+		const minutes = (currTime / 60).toFixed();
+		const seconds = (currTime % 60).toFixed();
+		return minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0');
 	}
 
 	useEffect(() => {
@@ -52,16 +51,14 @@ export function useStopwatch(): UseStopwatchReturn {
 				return;
 			}
 
-			setTime((prev) => {
+			setTime(() => {
 				const elapse = Date.now() - playTimestamp;
-
-				// TODO: fix
-				return prev + elapse;
+				return elapse / 1000;
 			});
 		}, HALF_SECOND_IN_MILLIS)
 
 		return () => clearInterval(interv);
-	}, []);
+	}, [playTimestamp]);
 
 	return {
 		currentTime,
